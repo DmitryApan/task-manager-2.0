@@ -1,38 +1,358 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-center {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.section {
+  padding: 5px;
+  border-radius: 2px;  
+  width: 200px;
+  height: 100%;
+}
+
+.section-header {
+  height: 30px;
+  align-items: center;
+  margin: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  border-top-width: 1px;
+  border-top-style: solid;   
+  background-color: white;
+  box-shadow: -1px 1px 3px;
+  color: grey;
+}
+
+.section-header-name {
+  width: 100px;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;   
+  text-overflow: ellipsis;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(97, 96, 96);
+}
+
+.section-header-newcard {
+  padding-right: 5px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;  
+}
+
+.section-header-order {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.section-card-title {
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(97, 96, 96);
+}
+
+.section-header-amount {
+  width: 25px;
+  height: 15px;
+  margin-right: 12px;
+  border-radius: 12px;
+  border: 1px solid grey;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.section-cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.section-card {
+  margin: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 3px;
+}
+
+.button-x-small, 
+.button-x-big, 
+.button-arrow-small, 
+.button-arrow-big,
+.button-logout {  
+  border-radius: 3px;  
+  text-align: center; 
+  text-decoration: none;
+  color: white;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.button-x-small, 
+.button-x-big,
+.button-logout {
+  margin-left: auto;
+  background-color: rgba(250, 29, 0, 0.6);
+}
+
+.button-arrow-small, 
+.button-arrow-big {  
+  background-color: rgb(0, 171, 250);
+}
+
+.button-x-small, 
+.button-arrow-small {
+  height: 12px;
+  width: 12px;
+  line-height: 12px;
+}
+
+.button-x-big, 
+.button-arrow-big {
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.button-logout {
+  padding: 8px;
+  font-size: 20px;
+  line-height: 20px; 
+}
+
+.section-card-info {
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 12px;
+  color: rgb(70, 69, 69);
+}
+
+.section-card-info-text {
+  width: 130px;
+  overflow: hidden;
+  max-height: 50px;
+}
+
+.section-card-info-owners {
+  margin-top: 10px;
+  z-index: 0;
+}
+
+.section-card-info-graph-avatar {
+  width: 22px;
+  height: 22px;
+  
+  border-radius: 50%;     
+}
+
+.avatar-lay {
+  position: absolute;
+  right: 50%;   
+}
+
+.section-card-info-graph-initials {    
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;    
+  background-color: rgb(65, 141, 202);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.section-card-image {
+  border-radius: 3px 3px 0px 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-overlay,
+.login-overlay { 
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.homepage-overlay {
+  background-color: beige;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal-window {
+  width: 400px;
+  padding: 10px;  
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.login-overlay {
+  background-color: rgb(241, 238, 238);
+}
+
+.login-window {
+  padding: 20px;  
+  border: 2px solid rgb(206, 205, 205); 
+  border-radius: 8px;
+  background-color: #ffffff;  
+}
+
+.login-textbox-email,
+.login-textbox-password,
+.login-region-submit { 
+  margin: 10px;  
+}
+
+.login-textbox-email,
+.login-textbox-password,
+.login-submit-button {  
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.login-textbox-email,
+.login-textbox-password {
+  width: 300px; 
+  border: 1px solid rgb(206, 205, 205);  
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: bold;  
+}
+
+.login-submit-button {  
+  width: 100px;
+  border: none;
+  background-color: rgb(100, 145, 182);
+  color: white;  
+}
+
+.login-link {
+  margin-left: 80px;
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(63, 97, 124);
+}
+
+.login-message-region {
+  margin-left: 10px;
+  color: red;
+}
+
+input::placeholder {
+  color: rgb(224, 222, 222);
+ } 
+
+.homepage-region-logout {
+  margin: 10px;
+  margin-left: auto;  
+  align-items: flex-end;
+}
+
+.create-panel-body {
+  font-size: 10px;
+  color: grey;
+  border-radius: 3px;
+  border-bottom: 1px solid rgb(233, 120, 120);   
+  box-shadow: -1px 1px 3px;
+  background-color: white;
+  padding: 5px;
+  margin: 0px 5px 5px;
+}
+
+.panel {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.panel-body {
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 2px;
+  z-index: 2;
+}
+
+.panel-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.avatar-image,
+.avatar-initials {
+  display: flex;
+  border: solid 2px white;
+  height: inherit;
+  width: inherit;
+  border-radius: 50%;
+}
+
+.avatar-initials {
+  color: white;
+  font-size: inherit;
+  font-family: monospace;
+  line-height: inherit;  
+  background-color: rgb(0,170,250);
+}
+
+.user-menu {
+  padding: 10px;  
+}
+
+.menu-preferences,
+.menu-logout {
+  cursor: pointer;
+}
+
+.text-editor {
+  word-break: break-word;
+  padding-right: 10px;
+}
+
+.text-placeholder {
+  color: gray;
+}
+
+.card-info-heap-avatar {
+  margin-bottom: 5px;
+}
+
+.card-info-select {
+  z-index: 100;
+  position: relative;
+}
+
+.homepage-region-avatar {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+}
+
+.user-avatar {
+  height: 200px;
+  width: 200px;
+}
+
