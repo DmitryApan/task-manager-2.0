@@ -29,7 +29,7 @@ export default function SettingsPanel({statuses, webSocket, onDeleteStatus, onCr
             
             setStatusName('');            
         }       
-    }, [getExistStatus, statusName, statuses, onCreateStatus, getRandomColor, setStatusName, message]);
+    }, [statusName, statuses, onCreateStatus, setStatusName]);
 
     const handleChangeStatusName = useCallback(({target}) => {        
         setStatusName(target.value);

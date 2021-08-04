@@ -11,7 +11,7 @@ const defaultState = {
     error: ''
 };
 
-export default function (state = defaultState, action) {
+export default function authorization(state = defaultState, action) {
     switch(action.type) {
         case AUTHORIZATION_REQUEST:
             return {

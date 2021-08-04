@@ -12,11 +12,11 @@ export default function TableSections({statuses, cards, usersApp, openCreatePane
     
     const cardsByStatus = useCallback((name) => (
         findCardsByStatus(name, cards)
-    ), [findCardsByStatus, cards]);
+    ), [cards]);
 
     const cardsByDisabledStatus = useMemo(() => (
         findCardsByDisabledStatuses(statuses, cards)
-    ), [findCardsByDisabledStatuses, statuses, cards]);
+    ), [statuses, cards]);
 
     return(        
         <DragDropContext onDragEnd={onDragEnd}>                

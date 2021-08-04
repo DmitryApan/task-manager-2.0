@@ -24,13 +24,13 @@ export default function AreaAvatar(props) {
 
     const onClickAvatarArea = useCallback(() => {
         onClickAvatar && onClickAvatar(_id);
-    }, [onClickAvatar]);
+    }, [onClickAvatar, _id]);
 
     const onClickCrossArea = useCallback((event) => {
         onClickCross(_id);
 
         event.stopPropagation();
-    }, [onClickCross]);
+    }, [onClickCross, _id]);
 
     const getStyleAvatar = useMemo(() => ({
         height: `${size}px`, 

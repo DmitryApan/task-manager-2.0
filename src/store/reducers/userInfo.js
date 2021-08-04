@@ -1,6 +1,6 @@
 import {USER_INFO_REQUEST, USER_INFO_RECEIVE, USER_INFO_DATA_CHANGE} from '../actions/userInfo';
 
-export default function(state = {
+export default function userInfo(state = {
     isFetching: false,
     data: {}
 }, action) {

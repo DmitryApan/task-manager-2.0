@@ -27,7 +27,7 @@ export default function SelectorChilds(props) {
         addChilds(getCardsByArrayTitle(childs, cards).map((card => card._id)));
 
         setChilds([]);
-    }, [addChilds, getCardsByArrayTitle, childs, cards, setChilds]);
+    }, [addChilds, childs, cards, setChilds]);
 
     const filteredOptions = useMemo(() => (
         avalibleChildsToAdd.filter(card => !childs.includes(card.title))

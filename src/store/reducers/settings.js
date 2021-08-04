@@ -1,6 +1,6 @@
 import {SETTINGS_REQUEST, SETTINGS_RECEIVE, SETTINGS_CHANGE} from '../actions/settings';
 
-export default function(state = {
+export default function settings(state = {
     isFetching: false,
     data: {
         statuses: []

@@ -1,6 +1,6 @@
 import {USERS_APP_REQUEST, USERS_APP_RECEIVE, USERS_APP_DATA_CHANGE} from '../actions/usersApp';
 
-export default function(state = {
+export default function usersApp(state = {
     isFetching: false,
     data: []
 }, action) {

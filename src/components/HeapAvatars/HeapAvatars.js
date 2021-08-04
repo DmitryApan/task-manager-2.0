@@ -25,11 +25,11 @@ function HeapAvatars(props) {
 
     const handleMouseEnter = useCallback(() => {
         mutable && setShowAllPosition(true);
-    }, [setShowAllPosition]);
+    }, [setShowAllPosition, mutable]);
 
     const handleMouseLeave = useCallback(() => {
         mutable && setShowAllPosition(false);
-    }, [setShowAllPosition]);
+    }, [setShowAllPosition, mutable]);
 
     const handleOnClickAddUser = useCallback(() => {
         setShowUserSearch(true);
@@ -50,11 +50,11 @@ function HeapAvatars(props) {
     const getStyleProperties = useCallback((i) => ({
         marginLeft: +i ? `${-size * 0.3}px` : '0px',
         zIndex: numPosition - i
-    }), [numPosition]);
+    }), [numPosition, size]);
 
     return (
         <>
-            <div className={styles.heap}
+            <div style={styles.heap}
                 onMouseEnter={handleMouseEnter} 
                 onMouseLeave={handleMouseLeave}
             >

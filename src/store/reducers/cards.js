@@ -1,6 +1,6 @@
 import {CARDS_REQUEST, CARDS_RECEIVE, CARDS_DATA_CHANGE, CARDS_ANIMATION} from '../actions/cards';
 
-export default function(state = {
+export default function cards(state = {
     isFetching: false,
     data: [],
     animation: false

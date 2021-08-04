@@ -12,7 +12,7 @@ export default function ListChildrenCard(props) {
 
     const getStyleColorSquare = useCallback((status) => ({
         backgroundColor: getColorByStatus(statuses, status)
-    }), [getColorByStatus, statuses])
+    }), [statuses])
 
     const handleOnClickLink = useCallback(({target}) => {
         onRedirect(target.attributes.getNamedItem('childId').value);
