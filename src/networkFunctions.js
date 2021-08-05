@@ -4,7 +4,8 @@ function serverRequest({url, method = 'GET', headers, body}) {
     return fetch(url, {
         method,
         headers,
-        body
+        body,
+        credentials: 'include'
     }).catch(error => {
         throw new Error('Response Error!');
     });
