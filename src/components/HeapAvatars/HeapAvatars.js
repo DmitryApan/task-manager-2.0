@@ -54,7 +54,7 @@ function HeapAvatars(props) {
 
     return (
         <>
-            <div style={styles.heap}
+            <div className={styles.heap}
                 onMouseEnter={handleMouseEnter} 
                 onMouseLeave={handleMouseLeave}
             >
