@@ -1,0 +1,15 @@
+.heap {
+    display: inline-flex;
+}
+
+.search {
+    margin-top: 5px;
+    z-index: 1;
+}
+
+.points {
+    display: flex; 
+    align-items: flex-end;
+    font-weight: bold;
+    color: rgb(0, 170, 250);
+}
