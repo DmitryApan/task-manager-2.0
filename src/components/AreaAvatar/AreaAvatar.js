@@ -43,8 +43,7 @@ export default function AreaAvatar(props) {
         width: `${size * 0.35}px`,
     }), [size]);
 
-    return (
-        
+    return (        
         <div 
             className={styles.area}
             onMouseEnter={onMouseEnterArea}
