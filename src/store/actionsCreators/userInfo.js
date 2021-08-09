@@ -22,8 +22,7 @@ function getFunctionChangeUserInfoByKey(key) {
             backendSetUserInfo({
                 id: getState().userInfo.data._id,
                 [key]: value
-            }).then((data) => {
-                const {userInfo} = data;
+            }).then(({data: userInfo}) => {
 
                 dispatch(usersAppChange([
                     ...getState().usersApp.data.map(user => {
