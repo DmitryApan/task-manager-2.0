@@ -20,7 +20,7 @@ function getFunctionChangeUserInfoByKey(key) {
 
         return (dispatch, getState) => {
             backendSetUserInfo({
-                email: getState().userInfo.data.email,
+                id: getState().userInfo.data._id,
                 [key]: value
             }).then((data) => {
                 const {userInfo} = data;
