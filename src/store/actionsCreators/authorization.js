@@ -10,7 +10,9 @@ import {
     backendGetUserInfo, 
     backendGetSettings,  
     backendGetDataCards,
-    backendGetUsersAppData
+    backendGetUsersAppData,
+    backendGetAuth,
+    backendSignOut
 } from '../../networkFunctions';
 import {userInfoRequest, userInfoReceive} from '../actionsCreators/userInfo';
 import {settingsRequest, settingsReceive} from '../actionsCreators/settings';
@@ -34,10 +36,15 @@ function authorizationError(error) {
 }
 
 function asyncGetAppData() {
-    return dispatch => {
-        dispatch(settingsRequest());
+    return dispatch => {     
+        dispatch(userInfoRequest());
+        
+        backendGetUserInfo().then((userInfo) => {
+            dispatch(userInfoReceive(userInfo));
+            dispatch(settingsRequest());
 
-        backendGetSettings().then((settings) => {
+            return backendGetSettings();
+        }).then((settings) => {
             dispatch(settingsReceive(settings));
             dispatch(cardsRequest());
 
@@ -57,42 +64,27 @@ export function authorization() {
     return dispatch => {
         dispatch(authorizationRequest());
 
-        let email = localStorage.getItem('email');
-
-        if (email) {
-            dispatch(authorizationLogIn());
-            dispatch(userInfoRequest());
-            
-            backendGetUserInfo({email}).then((userInfo) => {
-                dispatch(userInfoReceive(userInfo));
-
+        backendGetAuth().then(res => {
+            if (res.data.id) {
+                dispatch(authorizationLogIn());
                 dispatch(asyncGetAppData());
-            });
-        }
-        else {
-            dispatch(authorizationError());
-        }
+            }
+            else {
+                dispatch(authorizationError());
+            }
+        });        
     }
 }
 
 function getFunctionSign(sign) {
-    return (email, password, error) => {
-
+    return (email, password) => {
         return dispatch => {
-            dispatch(authorizationRequest());
-            dispatch(userInfoRequest());
-    
-            sign({email, password}).then((userInfo) => {
-                if (userInfo) {
-                    localStorage.setItem('email', email);
-    
-                    dispatch(authorizationLogIn());
-                    dispatch(userInfoReceive(userInfo));
-    
-                    dispatch(asyncGetAppData());
+            sign({email, password}).then(res => {
+                if (res.data.id) {                   
+                    dispatch(authorization());
                 }
                 else {
-                    dispatch(authorizationError(error));
+                    dispatch(authorizationError(res.error));
                 }            
             });
         } 
@@ -101,20 +93,22 @@ function getFunctionSign(sign) {
 
 export function signIn(email, password) {
     return dispatch => {
-        dispatch(getFunctionSign(backendSignIn)(email, password, 'Wrong rassword or email!'));
+        dispatch(getFunctionSign(backendSignIn)(email, password));
     }
 }
 
 export function signUp(email, password) {
     return dispatch => {
-        dispatch(getFunctionSign(backendSignUp)(email, password, 'Error registration!'));
+        dispatch(getFunctionSign(backendSignUp)(email, password));
     }
 }
 
-export function logOut() {
-    localStorage.removeItem('email');
-
+export function signOut() {
     return dispatch => {
-        dispatch(authorizationLogOut());
+        backendSignOut().then(res => {
+            if (res.data.id) {
+                dispatch(authorizationLogOut());
+            }
+        });        
     }
 }

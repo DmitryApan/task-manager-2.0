@@ -1,4 +1,4 @@
-import {urlCardData, urlCardCreate, urlCardSettings, urlSignUp, urlLogin, urlUserInfo, urlUsersInfo, urlStatusesUpdate} from './Data';
+import {urlCardData, urlCardCreate, urlCardSettings, urlSignUp, urlLogin, urlUserInfo, urlUsersInfo, urlStatusesUpdate, urlAuth, urlLogout} from './Data';
 
 function serverRequest({url, method = 'GET', headers, body}) {    
     return fetch(url, {
@@ -19,6 +19,12 @@ function jsonRequest(response) {
 
 export function backendGetSettings() {
     return serverRequest({url: urlCardSettings}).then((response) => {
+        return response.ok && jsonRequest(response);
+    });
+}
+
+export function backendGetAuth() {
+    return serverRequest({url: urlAuth}).then((response) => {
         return response.ok && jsonRequest(response);
     });
 }
@@ -101,6 +107,12 @@ export function backendSignUp(body) {
     }).then((response) => {
         return response.ok && jsonRequest(response);
     });
+}
+
+export function backendSignOut() {
+    return serverRequest({url: urlLogout}).then(response => {
+        return response.ok && jsonRequest(response);
+    })
 }
 
 export function backendCardChange(id, body) {

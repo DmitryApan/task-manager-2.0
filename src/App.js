@@ -73,7 +73,7 @@ class App extends React.Component {
     }
     
     render() {    
-        const {isLogin} = this.props;
+        const {isLogin, isLoginFetching} = this.props;
 
         return (
             <Router>
@@ -90,7 +90,7 @@ class App extends React.Component {
                                 <CardPage />
                             </Route>
                         </Fragment>
-                    ) : ( 
+                    ) : isLoginFetching || ( 
                         <Fragment>
                             <Route exact path="/">
                                 <Redirect to="/login" />
@@ -108,6 +108,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     isLogin: state.authorization.isLogin,
+    isLoginFetching: state.authorization.isFetching,
     userInfo: state.userInfo.data,
     webSocket: state.settings.data.webSocket,
 });
