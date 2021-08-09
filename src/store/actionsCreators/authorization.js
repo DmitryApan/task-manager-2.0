@@ -65,7 +65,7 @@ export function authorization() {
         dispatch(authorizationRequest());
 
         backendGetAuth().then(res => {
-            if (res.data.id) {
+            if (res.resultCode === 0) {
                 dispatch(authorizationLogIn());
                 dispatch(asyncGetAppData());
             }
