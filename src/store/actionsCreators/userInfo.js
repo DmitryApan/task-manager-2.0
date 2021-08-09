@@ -20,9 +20,11 @@ function getFunctionChangeUserInfoByKey(key) {
 
         return (dispatch, getState) => {
             backendSetUserInfo({
-                email: getState().userInfo.data.email,
+                id: getState().userInfo.data._id,
                 [key]: value
-            }).then((userInfo) => {
+            }).then((data) => {
+                const {userInfo} = data;
+
                 dispatch(usersAppChange([
                     ...getState().usersApp.data.map(user => {
                         return user._id === userInfo._id ? userInfo : user;
