@@ -34,7 +34,9 @@ export function addStatus(status) {
     return (dispatch, getState) => {
         const statuses = getState().settings.data.statuses;
 
-        backendChangeSettingsByKey('statuses', [...statuses, status]).then(({statuses}) => {
+        backendChangeSettingsByKey('statuses', [...statuses, status]).then(({data}) => {
+            const {statuses} = data;
+
             dispatch(changeSettingsByKey('statuses', statuses));
         });
     }
@@ -45,7 +47,9 @@ export function deleteStatus(name) {
         const statuses = getState().settings.data.statuses;
         const newStatuses = statuses.filter(status => status.name !== name);
 
-        backendChangeSettingsByKey('statuses', newStatuses).then(({statuses}) => {
+        backendChangeSettingsByKey('statuses', newStatuses).then(({data}) => {
+            const {statuses} = data;
+
             dispatch(changeSettingsByKey('statuses', statuses));
         });
     }
@@ -59,7 +63,9 @@ export function enableStatus(name, value) {
             enabled: status.name !== name ? status.enabled : value
         }));
 
-        backendChangeSettingsByKey('statuses', newStatuses).then(({statuses}) => {
+        backendChangeSettingsByKey('statuses', newStatuses).then(({data}) => {
+            const {statuses} = data;
+
             dispatch(changeSettingsByKey('statuses', statuses));
         });
     }
@@ -72,7 +78,9 @@ export function enableWebSocket(value) {
         backendChangeSettingsByKey('webSocket', {
             ...webSocket, 
             enabled: value
-        }).then(({webSocket}) => {
+        }).then(({data}) => {
+            const {webSocket} = data;
+
             dispatch(changeSettingsByKey('webSocket', webSocket));
         });
 

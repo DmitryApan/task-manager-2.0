@@ -39,23 +39,23 @@ function asyncGetAppData() {
     return dispatch => {     
         dispatch(userInfoRequest());
         
-        backendGetUserInfo().then((userInfo) => {
-            dispatch(userInfoReceive(userInfo));
+        backendGetUserInfo().then(({data}) => {
+            dispatch(userInfoReceive(data));
             dispatch(settingsRequest());
 
             return backendGetSettings();
-        }).then((settings) => {
-            dispatch(settingsReceive(settings));
+        }).then(({data}) => {
+            dispatch(settingsReceive(data));
             dispatch(cardsRequest());
 
             return backendGetDataCards();
-        }).then((cards) => {
-            dispatch(cardsReceive(cards));
+        }).then(({data}) => {
+            dispatch(cardsReceive(data));
             dispatch(usersAppRequest());
 
             return backendGetUsersAppData();
-        }).then((usersApp) => {
-            dispatch(usersAppReceive(usersApp));                
+        }).then(({data}) => {
+            dispatch(usersAppReceive(data));                
         });
     }    
 }

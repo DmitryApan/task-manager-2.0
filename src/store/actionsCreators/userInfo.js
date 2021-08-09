@@ -22,7 +22,9 @@ function getFunctionChangeUserInfoByKey(key) {
             backendSetUserInfo({
                 email: getState().userInfo.data.email,
                 [key]: value
-            }).then((userInfo) => {
+            }).then((data) => {
+                const {userInfo} = data;
+
                 dispatch(usersAppChange([
                     ...getState().usersApp.data.map(user => {
                         return user._id === userInfo._id ? userInfo : user;

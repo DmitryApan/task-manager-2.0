@@ -35,13 +35,13 @@ export function cardsAnimation(animation) {
 export function addCard(card) {
     return (dispatch, getState) => {
 
-        backendCardCreate(card).then(card => {
+        backendCardCreate(card).then(({data}) => {
             const cards = getState().cards.data;
-            const {status} = card;
+            const {status} = data;
 
             dispatch(changeDataCards({
                 ...cards,
-                [status]: [...(cards[status] || []), card]
+                [status]: [...(cards[status] || []), data]
             }));
         });
     }     
@@ -62,8 +62,9 @@ export function deleteCardFromChilds(id) {
 export function deleteCard(id) {
     return (dispatch, getState) => {
         
-        backendCardDelete(id).then(({status}) => {
+        backendCardDelete(id).then(({data}) => {
             let cards = getState().cards.data;
+            const {status} = data;
 
             let arrayCards = cards[status].filter(card => card._id !== id);
             let updateCards = {
